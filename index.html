@@ -29,15 +29,37 @@
 
       <div class="toolbar">
         <input type="text" class="toolbar__search" />
+
         <div class="toolbar__tabs tabs">
           <button class="tabs__item">Все</button>
           <button class="tabs__item">Активные</button>
           <button class="tabs__item">Завершенные</button>
         </div>
+
         <select class="toolbar__sort">
           <option value="old">Сначало старые</option>
           <option value="new">Сначало новые</option>
         </select>
+      </div>
+      <div class="task">
+        <div class="task__content">
+          <div class="task__title">Random Task</div>
+          <div class="task__meta">12.13.12, 14:11</div>
+        </div>
+
+        <div class="task__actions">
+          <button class="task__button task__button--edit">Изменить</button>
+          <button class="task__button task__button--delete">Удалить</button>
+        </div>
+      </div>
+
+      <div class="footer-controls">
+        <div class="footer-controls__counters">
+            <span>Всего: 1</span>
+            <span>Активных: 1</span>
+            <span>Выполненных: 1</span>
+        </div>
+        <button class="footer-controls__button">Очистить выполненные</button>
       </div>
     </main>
   </body>
