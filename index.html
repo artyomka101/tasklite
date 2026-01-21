@@ -1,35 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TaskLite</title>
-</head>
-<body class="todo">
-    
+  </head>
+  <body class="todo">
     <header class="header">
-        <div class="container header__container">
-            <h3 class="header__title">
-                TaskLite
-            </h3>
-            
-            <nav class="tabs">
-                <a href="index.html" class="tab">To Do</a>
-                <a href="kanban.html" class="tab">Kanban</a>
-            </nav>
+      <div class="container header__container">
+        <h3 class="header__title">TaskLite</h3>
 
-
-        </div>
+        <nav class="tabs">
+          <a href="index.html" class="tab">To Do</a>
+          <a href="kanban.html" class="tab">Kanban</a>
+        </nav>
+      </div>
     </header>
     <main class="container">
-        <h1 class="title">Задачи</h1>
-        <div class="form">
-            <input type="text" class="form-add__input" placeholder="Введите задачу">
-            <button type="button" class="form-add__button">
-                Добавить
-            </button>
+      <h1 class="title">Задачи</h1>
+      <div class="form">
+        <input
+          type="text"
+          class="form-add__input"
+          placeholder="Введите задачу"
+        />
+        <button type="button" class="form-add__button">Добавить</button>
+      </div>
+
+      <div class="toolbar">
+        <input type="text" class="toolbar__search" />
+        <div class="toolbar__tabs tabs">
+          <button class="tabs__item">Все</button>
+          <button class="tabs__item">Активные</button>
+          <button class="tabs__item">Завершенные</button>
         </div>
-        
+        <select class="toolbar__sort">
+          <option value="old">Сначало старые</option>
+          <option value="new">Сначало новые</option>
+        </select>
+      </div>
     </main>
-</body>
+  </body>
 </html>
