@@ -25,6 +25,68 @@ button {
   background-color: transparent;
 }
 
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.header__title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.tab {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #374151;
+}
+
+.tab.active{
+  background-color: #e8e8e8;
+  border-color: #bbbbbb;
+}
+
+.todo {
+background:
+radial-gradient(1200px 900px at 20% 25%, #ebe6f5 0%, transparent 60%),
+radial-gradient(1200px 900px at 80% 35%, #f6eee4 0%, transparent 60%),
+radial-gradient(1200px 900px at 50% 85%, #e6eef6 0%, transparent 60%),
+linear-gradient(#f6f3f9, #fbfaf8);
+background-attachment: fixed;
+}
+
+
 .form {
   display: flex;
   align-items: center;
