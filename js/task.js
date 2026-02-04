@@ -119,25 +119,59 @@
 
         // УРОК 3
 
-function sum(a, b ){
-    return a + b;
-}
-let result = sum(10, 15);
-console.log(sum(2,3));
+// function sum(a, b ){
+//     return a + b;
+// }
+// let result = sum(10, 15);
+// console.log(sum(2,3));
 
-function isTaskDone(status)
+// function isTaskDone(status)
+// {
+//     return status === "Выполненно";
+// }
+// console.log(isTaskDone("Выполненно"));
+
+// let done = isTaskDone("В процессе");
+// console.log(done);
+
+
+// function taskSummary(total, done)
+// {
+//     const active = total - done;
+//     console.log("Всего: " + total + " Активных: " + active + " Выполнено: " + done);
+// }
+// taskSummary(10,4);
+
+
+// урок 4
+
+let cities = ["Москва", "Питер", "Казань"];
+cities[2] = "Новосибирск";
+console.log(cities); 
+
+let task = 
 {
-    return status === "Выполненно";
-}
-console.log(isTaskDone("Выполненно"));
+    id: 1,
+    title: "Купить молоко",
+    status: "активна",
+};
 
-let done = isTaskDone("В процессе");
-console.log(done);
+console.log(task.title);
+task.status = "выполена";
+console.log(task.status);
+
+let todoList = [
+  { id: 1, title: "Купить молоко", status: "активна" },
+  { id: 2, title: "Позвонить врачу", status: "выполнена" },
+];
+console.log(todoList[1].title);
+console.log(todoList.length); 
 
 
-function taskSummary(total, done)
+let user =
 {
-    const active = total - done;
-    console.log("Всего: " + total + " Активных: " + active + " Выполнено: " + done);
+    name: "Иван",
+    tasks: todoList
 }
-taskSummary(10,4);
+
+console.log(user);
