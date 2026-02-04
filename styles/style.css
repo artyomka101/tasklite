@@ -241,7 +241,3 @@ body {
   outline: none;
   box-shadow: 0 0 0 3px rgba(30, 10, 60, 0.3);
 }
-
-.task__action:active {
-  transform: translateY(1px);
-}
