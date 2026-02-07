@@ -230,7 +230,6 @@ body {
   cursor: pointer;
 }
 
-
 .task__action:hover {
   background: #f6f4ff;
   border-color: rgba(30, 10, 60, 0.2);
@@ -240,4 +239,17 @@ body {
 .task__action:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(30, 10, 60, 0.3);
+}
+
+.footer-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.footer-controls__counters {
+  font-size: 13px;
+  color: #6f6781;
+  padding-left: 5px;
 }
