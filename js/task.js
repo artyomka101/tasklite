@@ -1,179 +1,183 @@
-// // // let a=10;
-// // // let b=5;
+// let a=10;
+// let b=5;
 
-// // // let sum = a+b;
-// // // let diff = a-b;
+// let sum = a+b;
+// let diff = a-b;
 
-// // // console.log(sum)
-// // // console.log(diff)
+// console.log(sum)
+// console.log(diff)
 
-// // // ===== Урок 2 =====
+// ===== Урок 2 =====
 
-// // // let title = "Прочитать конспект";
+// let title = "Прочитать конспект";
 
-// // // if(title === "")
-// // // {
-// // //     console.log("Название задачи не указано");
-// // // } else {
-// // //     console.log("Название задачи", title);
-// // // }
+// if(title === "")
+// {
+//     console.log("Название задачи не указано");
+// } else {
+//     console.log("Название задачи", title);
+// }
 
-// // // let task = 5;
+// let task = 5;
 
-// // // if(task === 0){
-// // //     console.log("Нет задач для выполнения");
-// // // } else if(task <=3 ){
-// // //     console.log("Немного задач");
-// // // } else{
-// // //     console.log("Много задач");
-// // // }
+// if(task === 0){
+//     console.log("Нет задач для выполнения");
+// } else if(task <=3 ){
+//     console.log("Немного задач");
+// } else{
+//     console.log("Много задач");
+// }
 
-// //     // Домашняя работа
-// // // 2,3
-// // // let a=10;
-// // // let b=5;
+//     Домашняя работа
+// 2,3
+// let a=10;
+// let b=5;
 
-// // // let sum = a+b;
-// // // let diff = a-b;
-// // // let umno = a*b;
-// // // let delenie = a/b;
+// let sum = a+b;
+// let diff = a-b;
+// let umno = a*b;
+// let delenie = a/b;
 
-// // // console.log(sum);
-// // // console.log(diff);
-// // // console.log(umno);
-// // // console.log(delenie);
+// console.log(sum);
+// console.log(diff);
+// console.log(umno);
+// console.log(delenie);
 
-// // // // 4,5
-// // // let name = "Artem";
-// // // let full = "Volokitin";
-// // // let fullname = name + " " + full;
-// // // console.log(fullname);
+// // 4,5
+// let name = "Artem";
+// let full = "Volokitin";
+// let fullname = name + " " + full;
+// console.log(fullname);
 
-// // // // 8,9
-// // // let title = "Прочитать конспект";
+// // 8,9
+// let title = "Прочитать конспект";
 
-// // // if(title === "")
-// // // {
-// // //     console.log("Название задачи не указано");
-// // // } else {
-// // //     console.log("Задача:", title);
-// // // }
+// if(title === "")
+// {
+//     console.log("Название задачи не указано");
+// } else {
+//     console.log("Задача:", title);
+// }
 
-// // // let task = 2;
+// let task = 2;
 
-// // // if(task === 0){
-// // //     console.log("Нет задач для выполнения");
-// // // } else if(task <=3 ){
-// // //     console.log("Немного задач");
-// // // } else{
-// // //     console.log("Много задач");
-// // // }
+// if(task === 0){
+//     console.log("Нет задач для выполнения");
+// } else if(task <=3 ){
+//     console.log("Немного задач");
+// } else{
+//     console.log("Много задач");
+// }
 
-// // // // 10
+// // 10
 
-// // // let isCompleted = false;
+// let isCompleted = false;
 
-// // // if(isCompleted === true){
-// // //     console.log("Задача выполена");
-// // // }else  {
-// // //     console.log("Задача ещё в работе");
-// // // }
+// if(isCompleted === true){
+//     console.log("Задача выполена");
+// }else  {
+//     console.log("Задача ещё в работе");
+// }
 
-// // // // 11
+// // 11
 
-// // // let urgent = 23;
-// // // let timebustro = false;
+// let urgent = 23;
+// let timebustro = false;
 
-// // // if(urgent === 0) {
-// // //     console.log("Все задачи завершены");
-// // // } else if(timebustro === true) {
-// // //     console.log("Есть срочные задачи");
-// // // } else {
-// // //     console.log("Задачи есть, но они не срочные");
-// // // }
+// if(urgent === 0) {
+//     console.log("Все задачи завершены");
+// } else if(timebustro === true) {
+//     console.log("Есть срочные задачи");
+// } else {
+//     console.log("Задачи есть, но они не срочные");
+// }
 
-// // // // 12
+// // 12
 
-// // // let isAdmin = true;
-// // // let isModerator = false;
+// let isAdmin = true;
+// let isModerator = false;
 
-// // // if(isAdmin === true || isModerator === true){
-// // //     console.log("Доступ разрешён");
-// // // }else{
-// // //     console.log("Доступ запрещён");
-// // // }
+// if(isAdmin === true || isModerator === true){
+//     console.log("Доступ разрешён");
+// }else{
+//     console.log("Доступ запрещён");
+// }
 
-// // // // Задача "Скидка в магазине"
+// // Задача "Скидка в магазине"
 
-// // // let amount = 1000;
+// let amount = 1000;
 
-// // // if(amount === 0){
-// // //     console.log("Корзина пуста");
-// // // }else if( amount < 1000){
-// // //     console.log("Скидка не применяется");
-// // // }else if(amount >= 1000 && amount < 5000){
-// // //     console.log("Скидака 5%");
-// // // }else if(amount > 5000){
-// // //     console.log("Скидка 10%");
-// // // }
+// if(amount === 0){
+//     console.log("Корзина пуста");
+// }else if( amount < 1000){
+//     console.log("Скидка не применяется");
+// }else if(amount >= 1000 && amount < 5000){
+//     console.log("Скидака 5%");
+// }else if(amount > 5000){
+//     console.log("Скидка 10%");
+// }
 
-// //         // УРОК 3
+//         УРОК 3
 
-// // // function sum(a, b ){
-// // //     return a + b;
-// // // }
-// // // let result = sum(10, 15);
-// // // console.log(sum(2,3));
+// function sum(a, b ){
+//     return a + b;
+// }
+// let result = sum(10, 15);
+// console.log(sum(2,3));
 
-// // // function isTaskDone(status)
-// // // {
-// // //     return status === "Выполненно";
-// // // }
-// // // console.log(isTaskDone("Выполненно"));
+// function isTaskDone(status)
+// {
+//     return status === "Выполненно";
+// }
+// console.log(isTaskDone("Выполненно"));
 
-// // // let done = isTaskDone("В процессе");
-// // // console.log(done);
+// let done = isTaskDone("В процессе");
+// console.log(done);
 
-// // // function taskSummary(total, done)
-// // // {
-// // //     const active = total - done;
-// // //     console.log("Всего: " + total + " Активных: " + active + " Выполнено: " + done);
-// // // }
-// // // taskSummary(10,4);
+// function taskSummary(total, done)
+// {
+//     const active = total - done;
+//     console.log("Всего: " + total + " Активных: " + active + " Выполнено: " + done);
+// }
+// taskSummary(10,4);
 
-// // // урок 4
+// урок 4
 
-// // let cities = ["Москва", "Питер", "Казань"];
-// // cities[2] = "Новосибирск";
-// // console.log(cities);
+// let cities = ["Москва", "Питер", "Казань"];
+// cities[2] = "Новосибирск";
+// console.log(cities);
 
-// // let task =
-// // {
-// //     id: 1,
-// //     title: "Купить молоко",
-// //     status: "активна",
-// // };
+// let task =
+// {
+//     id: 1,
+//     title: "Купить молоко",
+//     status: "активна",
+// };
 
-// // console.log(task.title);
-// // task.status = "выполена";
-// // console.log(task.status);
+// console.log(task.title);
+// task.status = "выполена";
+// console.log(task.status);
 
 let tasks = [
   { id: 1, title: "Купить молоко", status: "активна" },
   { id: 2, title: "Позвонить врачу", status: "выполнена" },
+  { id: 3, title: "Сходить в магазин", status: "активна" },
+  { id: 4, title: "Покушать", status: "выполнена" },
+  { id: 5, title: "Поиграть", status: "активна" },
+  { id: 6, title: "Доделать уроки", status: "выполнена" },
 ];
-// // console.log(task[1].title);
-// // console.log(task.length);
+// console.log(task[1].title);
+// console.log(task.length);
 
-// // let user =
-// // {
-// //     name: "Иван",
-// //     tasks: todoList
-// // }
+// let user =
+// {
+//     name: "Иван",
+//     tasks: todoList
+// }
 
-// // console.log(user);
+// console.log(user);
 
-// // Домашняя работа
+// Домашняя работа
 
 // function sum(a, b) {
 //   return a + b;
@@ -298,45 +302,110 @@ let tasks = [
 
 // урок 5 09.02
 
-function filterByStatus(tasks, status) {
-  // return tasks.filter(function (task){
-  //   return task.status === status
-  // })
+// function filterByStatus(tasks, status) {
+//   // return tasks.filter(function (task){
+//   //   return task.status === status
+//   // })
 
-  return tasks.filter((t) => t.status === status);
+//   return tasks.filter((t) => t.status === status);
+// }
+
+// console.log(filterByStatus(tasks, "выполнена"));
+
+// function sortByName(tasks) {
+//   tasks.sort((a, b) => a.title.localeCompare(b.title));
+
+//   return tasks;
+// }
+
+// console.log(sortByName(tasks));
+
+// function searchByTitle(tasks, query) {
+//   let q = String(query).toLowerCase();
+//   return tasks.filter((task) => task.title.toLowerCase().indexOf(q) !== -1);
+// }
+
+// console.log(searchByTitle(tasks, "по"));
+
+// function toggleTaskStatus(tasks, id) {
+//   return tasks.map(function (task) {
+//     if (task.id === id) {
+//       const newStatus = task.status === "выполнена" ? "активна" : "выполнена";
+
+//       return {
+//         id: task.id,
+//         title: task.title,
+//         status: newStatus,
+//       };
+//     }
+
+//     return task;
+//   });
+// }
+
+// console.log(toggleTaskStatus(tasks, 1));
+
+// Урок 6 или 7 11.02
+
+for (let i = 0; i < tasks.length; i++) {
+  console.log(tasks[i].id + ": " + tasks[i].title);
 }
 
-console.log(filterByStatus(tasks, "выполнена"));
-
-function sortByName(tasks) {
-  tasks.sort((a, b) => a.title.localeCompare(b.title));
-
-  return tasks;
+for (let task of tasks) {
+  console.log(task.id + ": " + task.title);
 }
 
-console.log(sortByName(tasks));
+let i = 0;
+let total = 0;
+let done = 0;
+let active = 0;
 
-function searchByTitle(tasks, query) {
-  let q = String(query).toLowerCase();
-  return tasks.filter((task) => task.title.toLowerCase().indexOf(q) !== -1);
+while (i < tasks.length) {
+  total++;
+  if (tasks[i].status === "выполнена") {
+    done++;
+  } else {
+    active++;
+  }
+  i++;
 }
 
-console.log(searchByTitle(tasks, "по"));
+console.log(
+  "Всего: " + total + "| Выполнено: " + done + "| Активных: " + active,
+);
 
-function toggleTaskStatus(tasks, id) {
-  return tasks.map(function (task) {
-    if (task.id === id) {
-      const newStatus = task.status === "выполнена" ? "активна" : "выполнена";
-
-      return {
-        id: task.id,
-        title: task.title,
-        status: newStatus,
-      };
-    }
-
-    return task;
-  });
+for (let task of tasks) {
+  if (task.status === "активна") {
+    console.log("Активная задача: " + task.title);
+  }
 }
 
-console.log(toggleTaskStatus(tasks, 1));
+tasks.forEach(task => {
+  console.log(task.id + " " + task.title + " (" + task.status + ")");
+})
+
+let searchTitle = "Купить молоко"
+let found = null;
+
+for(let task of tasks){
+  if (task.title === searchTitle){
+    found = task;
+    break;
+  }
+}
+
+if(found){
+  console.log("Задача найдена: ", found);
+}else{
+  console.log("Задача не найдена");
+}
+
+let activeTasks = []
+
+for(let task of tasks){
+  if(task.status === "активна"){
+    activeTasks.push(task);
+  }
+}
+
+console.log(activeTasks)
