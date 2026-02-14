@@ -158,14 +158,14 @@
 // task.status = "выполена";
 // console.log(task.status);
 
-let tasks = [
-  { id: 1, title: "Купить молоко", status: "активна" },
-  { id: 2, title: "Позвонить врачу", status: "выполнена" },
-  { id: 3, title: "Сходить в магазин", status: "активна" },
-  { id: 4, title: "Покушать", status: "выполнена" },
-  { id: 5, title: "Поиграть", status: "активна" },
-  { id: 6, title: "Доделать уроки", status: "выполнена" },
-];
+// let tasks = [
+//   { id: 1, title: "Купить молоко", status: "активна" },
+//   { id: 2, title: "Позвонить врачу", status: "выполнена" },
+//   { id: 3, title: "Сходить в магазин", status: "активна" },
+//   { id: 4, title: "Покушать", status: "выполнена" },
+//   { id: 5, title: "Поиграть", status: "активна" },
+//   { id: 6, title: "Доделать уроки", status: "выполнена" },
+// ];
 // console.log(task[1].title);
 // console.log(task.length);
 
@@ -347,65 +347,230 @@ let tasks = [
 
 // Урок 6 или 7 11.02
 
+// for (let i = 0; i < tasks.length; i++) {
+//   console.log(tasks[i].id + ": " + tasks[i].title);
+// }
+
+// for (let task of tasks) {
+//   console.log(task.id + ": " + task.title);
+// }
+
+// let i = 0;
+// let total = 0;
+// let done = 0;
+// let active = 0;
+
+// while (i < tasks.length) {
+//   total++;
+//   if (tasks[i].status === "выполнена") {
+//     done++;
+//   } else {
+//     active++;
+//   }
+//   i++;
+// }
+
+// console.log(
+//   "Всего: " + total + "| Выполнено: " + done + "| Активных: " + active,
+// );
+
+// for (let task of tasks) {
+//   if (task.status === "активна") {
+//     console.log("Активная задача: " + task.title);
+//   }
+// }
+
+// tasks.forEach(task => {
+//   console.log(task.id + " " + task.title + " (" + task.status + ")");
+// })
+
+// let searchTitle = "Купить молоко"
+// let found = null;
+
+// for(let task of tasks){
+//   if (task.title === searchTitle){
+//     found = task;
+//     break;
+//   }
+// }
+
+// if(found){
+//   console.log("Задача найдена: ", found);
+// }else{
+//   console.log("Задача не найдена");
+// }
+
+// let activeTasks = []
+
+// for(let task of tasks){
+//   if(task.status === "активна"){
+//     activeTasks.push(task);
+//   }
+// }
+
+// console.log(activeTasks)
+
+
+
+
+// Домашняя работа
+
+
+let tasks = [
+  { id: 1, title: "Купить молоко", status: "активна" },
+  { id: 2, title: "Позвонить врачу", status: "выполнена" },
+  { id: 3, title: "Сходить в магазин", status: "активна" },
+  { id: 4, title: "Покушать", status: "выполнена" },
+  { id: 5, title: "Поиграть", status: "активна" },
+  { id: 6, title: "Доделать уроки", status: "выполнена" },
+];
+
+// 2
+
 for (let i = 0; i < tasks.length; i++) {
   console.log(tasks[i].id + ": " + tasks[i].title);
 }
+
+// 3
 
 for (let task of tasks) {
   console.log(task.id + ": " + task.title);
 }
 
+// 4
+
 let i = 0;
 let total = 0;
-let done = 0;
 let active = 0;
-
+let completed = 0;
 while (i < tasks.length) {
   total++;
-  if (tasks[i].status === "выполнена") {
-    done++;
-  } else {
+  if (tasks[i].status === "активна") {
     active++;
+  } else {
+    completed++;
   }
   i++;
 }
-
 console.log(
-  "Всего: " + total + "| Выполнено: " + done + "| Активных: " + active,
+  "Всего: " + total + " | Активных: " + active + " | Выполненных: " + completed,
 );
+
+// 5
 
 for (let task of tasks) {
   if (task.status === "активна") {
-    console.log("Активная задача: " + task.title);
+    console.log(task.title);
   }
 }
 
-tasks.forEach(task => {
-  console.log(task.id + " " + task.title + " (" + task.status + ")");
-})
+// 6
 
-let searchTitle = "Купить молоко"
+tasks.forEach((task) => {
+  console.log("#" + task.id + " " + task.title + " (" + task.status + ")");
+});
+
+// 7
+
+let searchTitle = "Позвонить врачу";
 let found = null;
 
-for(let task of tasks){
-  if (task.title === searchTitle){
+for (let task of tasks) {
+  if (task.title === searchTitle) {
     found = task;
     break;
   }
 }
 
-if(found){
+if (found) {
   console.log("Задача найдена: ", found);
-}else{
+} else {
   console.log("Задача не найдена");
 }
 
-let activeTasks = []
+// 8
 
-for(let task of tasks){
-  if(task.status === "активна"){
+let activeTasks = [];
+for (let task of tasks) {
+  if (task.status === "активна") {
     activeTasks.push(task);
   }
 }
+console.log(activeTasks);
 
-console.log(activeTasks)
+// 9
+
+function filterByStatus(status) {
+  let result = [];
+  for (let task of tasks) {
+    if (task.status === status) {
+      result.push(task);
+    }
+  }
+  return result;
+}
+console.log("Активные:", filterByStatus("активна"));
+console.log("Выполненные:", filterByStatus("выполнена"));
+
+// 12
+
+function deleteById(id) {
+  let result = [];
+  for (let task of tasks) {
+    if (task.id !== id) {
+      result.push(task);
+    }
+  }
+  return result;
+}
+
+console.log(deleteById(2));
+
+// 13
+
+function toggleStatus(id) {
+  let result = [];
+  for (let task of tasks) {
+    if (task.id === id) {
+      let newTask = {
+        id: task.id,
+        title: task.title,
+        status: task.status === "активна" ? "выполнена" : "активна",
+      };
+      result.push(newTask);
+    } else {
+      result.push(task);
+    }
+  }
+  return result;
+}
+
+console.log(toggleStatus(3));
+
+// 14
+
+function clearCompleted() {
+  let result = [];
+  for (let task of tasks) {
+    if (task.status === "активна") {
+      result.push(task);
+    }
+  }
+  return result;
+}
+
+console.log(clearCompleted());
+
+// Самостоятельная часть
+
+function findTaskByKeyword(tasks, keyword) {
+  for (let task of tasks) {
+    if (task.title.toLowerCase().includes(keyword.toLowerCase())) {
+      return task;
+    }
+  }
+  return "Задача не найдена";
+}
+console.log(findTaskByKeyword(tasks, "Сходить"));
+console.log(findTaskByKeyword(tasks, "отчёт"));
+console.log(findTaskByKeyword(tasks, "тест"));
