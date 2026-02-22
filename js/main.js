@@ -5,6 +5,7 @@ const searchInput = document.querySelector(".toolbar__search");
 const footer = document.querySelector(".footer-controls");
 const sortSelect = document.querySelector(".toolbar__sort");
 
+
 function renderTask(taskData) {
   const task = document.createElement("div");
   task.classList.add("task");
@@ -85,3 +86,7 @@ const task2 = renderTask ({
 })
 
 container.append(task1,task2)
+
+
+const tabButtons = document.querySelectorAll(".tabs__item");
+const clearButton = document.querySelector(".footer-controls__button");
