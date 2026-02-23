@@ -4,31 +4,35 @@ const container = document.querySelector(".tasks");
 const searchInput = document.querySelector(".toolbar__search");
 const footer = document.querySelector(".footer-controls");
 const sortSelect = document.querySelector(".toolbar__sort");
+const tabButtons = document.querySelectorAll(".tabs__item");
+const clearButton = document.querySelector(".footer-controls__button");
 
+function renderTask() {
+  container.innerHTML = "";
 
-function renderTask(taskData) {
-  const task = document.createElement("div");
-  task.classList.add("task");
+  tasks.forEach((task) => {
+    const item = document.createElement("div");
+    item.classList.add("task");
 
-  const content = document.createElement("div");
-  content.classList.add("task__content");
+    const content = document.createElement("div");
+    content.classList.add("task__content");
 
-  const title = document.createElement("div");
-  title.classList.add("task__title");
-  title.textContent = taskData.text;
+    const title = document.createElement("div");
+    title.classList.add("task__title");
+    title.textContent = task.text;
 
-  const meta = document.createElement("div");
-  meta.classList.add("task__meta");
-  meta.textContent = taskData.date;
+    const meta = document.createElement("div");
+    meta.classList.add("task__meta");
+    meta.textContent = task.date;
 
-  content.append(title, meta);
+    content.append(title, meta);
 
-  const actions = document.createElement("div");
-  actions.classList.add("task__actions");
+    const actions = document.createElement("div");
+    actions.classList.add("task__actions");
 
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("task__action", "task__action--edit");
-  editBtn.innerHTML = `<svg
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("task__action", "task__action--edit");
+    editBtn.innerHTML = `<svg
               class="task__icon"
               viewBox="0 0 24 24"
               width="14"
@@ -45,9 +49,17 @@ function renderTask(taskData) {
               />
             </svg>`;
 
-  const deleteBtn = document.createElement("Button");
-  deleteBtn.classList.add("task__action", "task__action--edit");
-  deleteBtn.innerHTML = `<svg
+    editBtn.addEventListener("click", () => {
+      const newText = prompt("Изменить задачу: ", task.text);
+      if (newText && newText.trim() !== "") {
+        task.text = newText.trim();
+        renderTask();
+      }
+    });
+
+    const deleteBtn = document.createElement("Button");
+    deleteBtn.classList.add("task__action", "task__action--edit");
+    deleteBtn.innerHTML = `<svg
               class="task__icon"
               viewBox="0 0 24 24"
               width="14 "
@@ -65,28 +77,51 @@ function renderTask(taskData) {
               <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
             </svg>`;
 
-  actions.append(editBtn, deleteBtn);
+    deleteBtn.addEventListener("click", () => {
+      const index = tasks.indexOf(task);
 
-  task.append(content, actions);
+      tasks.splice(index, 1);
 
-  return task;
+      renderTask();
+    });
+    item.addEventListener("click", () => {
+      task.done = !task.done;
+      renderTask();
+    });
+    actions.append(editBtn, deleteBtn);
+    item.append(content, actions);
+    container.append(item);
+    if (task.done) {
+      item.classList.add("task--done");
+    }
+    container.append(item);
+  });
 }
 
+// console.log(renderTask({ text: "Прочитать книгу", date: "сегодня 11:00" }));
 
-console.log(renderTask({text:"Прочитать книгу", date: "сегодня 11:00"}))
+// const task1 = renderTask({
+//   text: "Прогулка с собакой",
+//   date: "Сегодня 11:00",
+// });
 
-const task1 = renderTask ({
-    text: "Прогулка с собакой",
-    date: "Сегодня 11:00"
-})
+// const task2 = renderTask({
+//   text: "Прогулка книгу",
+//   date: "Сегодня 13:00",
+// });
 
-const task2 = renderTask ({
+// container.append(task1, task2);
+
+const tasks = [
+  {
     text: "Прогулка книгу",
-    date: "Сегодня 13:00"
-})
-
-container.append(task1,task2)
-
-
-const tabButtons = document.querySelectorAll(".tabs__item");
-const clearButton = document.querySelector(".footer-controls__button");
+    date: "Сегодня 13:00",
+    done: true,
+  },
+  {
+    text: "Посмотреть фильм",
+    date: "Сегодня 14:00",
+    done: false,
+  },
+];
+renderTask();
