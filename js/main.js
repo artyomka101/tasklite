@@ -7,10 +7,10 @@ const sortSelect = document.querySelector(".toolbar__sort");
 const tabButtons = document.querySelectorAll(".tabs__item");
 const clearButton = document.querySelector(".footer-controls__button");
 
-function renderTask() {
-  container.innerHTML = "";
+function renderTask(task) {
 
-  tasks.forEach((task) => {
+
+  // tasks.forEach((task) => {
     const item = document.createElement("div");
     item.classList.add("task");
 
@@ -53,7 +53,7 @@ function renderTask() {
       const newText = prompt("Изменить задачу: ", task.text);
       if (newText && newText.trim() !== "") {
         task.text = newText.trim();
-        renderTask();
+        renderAll();
       }
     });
 
@@ -82,20 +82,26 @@ function renderTask() {
 
       tasks.splice(index, 1);
 
-      renderTask();
+      renderAll();
     });
-    item.addEventListener("click", () => {
+
+    item.addEventListener("click", (event) => {
+    if(event.target.closest('.task__action')) return;
       task.done = !task.done;
-      renderTask();
+      renderAll();
     });
+
     actions.append(editBtn, deleteBtn);
     item.append(content, actions);
     container.append(item);
+
     if (task.done) {
       item.classList.add("task--done");
     }
-    container.append(item);
-  });
+
+    return item;
+  //   container.append(item);
+  // });
 }
 
 // console.log(renderTask({ text: "Прочитать книгу", date: "сегодня 11:00" }));
@@ -124,4 +130,15 @@ const tasks = [
     done: false,
   },
 ];
-renderTask();
+
+function renderAll(){
+  // container.innerHTML = "";
+  document.querySelectorAll('.task').forEach(t => t.remove())
+
+  tasks.forEach(task => {
+    const card = renderTask(task)
+    footer.before(card);
+  });
+}
+
+renderAll();
