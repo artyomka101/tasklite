@@ -1,38 +1,68 @@
-const input = document.querySelector(".form--add__input");
-const addButton = document.querySelector(".form--add__button");
+const input = document.querySelector(".form-add__input");
+const addButton = document.querySelector(".form-add__button");
 const container = document.querySelector(".tasks");
 const searchInput = document.querySelector(".toolbar__search");
+const form = document.querySelector(".form-add");
 const footer = document.querySelector(".footer-controls");
 const sortSelect = document.querySelector(".toolbar__sort");
 const tabButtons = document.querySelectorAll(".tabs__item");
 const clearButton = document.querySelector(".footer-controls__button");
 
+let tasks = [];
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addTask()
+});
+
+function addTask() {
+  const text = input.value.trim();
+  if (text === "" || text.length < 3) {
+    input.classList.add("input--error")  
+    return
+  };
+
+  input.classList.remove("input--error")
+
+    const newTask = {
+      id: tasks.length + 1,
+      text: text,
+      done: false,
+      date: "Сейчас"
+    }
+
+
+
+    tasks.push(newTask)
+    input.value = "";
+
+    renderAll();
+}
+
 function renderTask(task) {
-
-
   // tasks.forEach((task) => {
-    const item = document.createElement("div");
-    item.classList.add("task");
+  const item = document.createElement("div");
+  item.classList.add("task");
 
-    const content = document.createElement("div");
-    content.classList.add("task__content");
+  const content = document.createElement("div");
+  content.classList.add("task__content");
 
-    const title = document.createElement("div");
-    title.classList.add("task__title");
-    title.textContent = task.text;
+  const title = document.createElement("div");
+  title.classList.add("task__title");
+  title.textContent = task.text;
 
-    const meta = document.createElement("div");
-    meta.classList.add("task__meta");
-    meta.textContent = task.date;
+  const meta = document.createElement("div");
+  meta.classList.add("task__meta");
+  meta.textContent = task.date;
 
-    content.append(title, meta);
+  content.append(title, meta);
 
-    const actions = document.createElement("div");
-    actions.classList.add("task__actions");
+  const actions = document.createElement("div");
+  actions.classList.add("task__actions");
 
-    const editBtn = document.createElement("button");
-    editBtn.classList.add("task__action", "task__action--edit");
-    editBtn.innerHTML = `<svg
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("task__action", "task__action--edit");
+  editBtn.innerHTML = `<svg
               class="task__icon"
               viewBox="0 0 24 24"
               width="14"
@@ -49,17 +79,17 @@ function renderTask(task) {
               />
             </svg>`;
 
-    editBtn.addEventListener("click", () => {
-      const newText = prompt("Изменить задачу: ", task.text);
-      if (newText && newText.trim() !== "") {
-        task.text = newText.trim();
-        renderAll();
-      }
-    });
+  editBtn.addEventListener("click", () => {
+    const newText = prompt("Изменить задачу: ", task.text);
+    if (newText && newText.trim() !== "") {
+      task.text = newText.trim();
+      renderAll();
+    }
+  });
 
-    const deleteBtn = document.createElement("Button");
-    deleteBtn.classList.add("task__action", "task__action--edit");
-    deleteBtn.innerHTML = `<svg
+  const deleteBtn = document.createElement("Button");
+  deleteBtn.classList.add("task__action", "task__action--edit");
+  deleteBtn.innerHTML = `<svg
               class="task__icon"
               viewBox="0 0 24 24"
               width="14 "
@@ -77,29 +107,29 @@ function renderTask(task) {
               <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
             </svg>`;
 
-    deleteBtn.addEventListener("click", () => {
-      const index = tasks.indexOf(task);
+  deleteBtn.addEventListener("click", () => {
+    const index = tasks.indexOf(task);
 
-      tasks.splice(index, 1);
+    tasks.splice(index, 1);
 
-      renderAll();
-    });
+    renderAll();
+  });
 
-    item.addEventListener("click", (event) => {
-    if(event.target.closest('.task__action')) return;
-      task.done = !task.done;
-      renderAll();
-    });
+  item.addEventListener("click", (event) => {
+    if (event.target.closest(".task__action")) return;
+    task.done = !task.done;
+    renderAll();
+  });
 
-    actions.append(editBtn, deleteBtn);
-    item.append(content, actions);
-    container.append(item);
+  actions.append(editBtn, deleteBtn);
+  item.append(content, actions);
+  container.append(item);
 
-    if (task.done) {
-      item.classList.add("task--done");
-    }
+  if (task.done) {
+    item.classList.add("task--done");
+  }
 
-    return item;
+  return item;
   //   container.append(item);
   // });
 }
@@ -118,50 +148,50 @@ function renderTask(task) {
 
 // container.append(task1, task2);
 
-const tasks = [
-  {
-    text: "Прогулка книгу",
-    date: "Сегодня 13:00",
-    done: true,
-  },
-  {
-    text: "Посмотреть фильм",
-    date: "Сегодня 14:00",
-    done: false,
-  },
-  {
-    text: "Купить продукты в магазине",
-    date: "Сегодня 15:30",
-    done: false,
-  },
-  {
-    text: "Позвонить врачу",
-    date: "Сегодня 16:00",
-    done: true,
-  },
-  {
-    text: "Сделать домашнее задание",
-    date: "Сегодня 18:00",
-    done: false,
-  },
-  {
-    text: "Приготовить ужин",
-    date: "Сегодня 19:30",
-    done: false,
-  },
-  {
-    text: "Почитать книгу перед сном",
-    date: "Сегодня 22:00",
-    done: true,
-  },
-];
+// const tasks = [
+//   {
+//     text: "Прогулка книгу",
+//     date: "Сегодня 13:00",
+//     done: true,
+//   },
+//   {
+//     text: "Посмотреть фильм",
+//     date: "Сегодня 14:00",
+//     done: false,
+//   },
+//   {
+//     text: "Купить продукты в магазине",
+//     date: "Сегодня 15:30",
+//     done: false,
+//   },
+//   {
+//     text: "Позвонить врачу",
+//     date: "Сегодня 16:00",
+//     done: true,
+//   },
+//   {
+//     text: "Сделать домашнее задание",
+//     date: "Сегодня 18:00",
+//     done: false,
+//   },
+//   {
+//     text: "Приготовить ужин",
+//     date: "Сегодня 19:30",
+//     done: false,
+//   },
+//   {
+//     text: "Почитать книгу перед сном",
+//     date: "Сегодня 22:00",
+//     done: true,
+//   },
+// ];
 
-function renderAll(){
+function renderAll() {
   // container.innerHTML = "";
-  document.querySelectorAll('.task').forEach(t => t.remove())
+  document.querySelectorAll(".task").forEach((t) => t.remove());
 
-  tasks.forEach(task => {
-    const card = renderTask(task)
+  tasks.forEach((task) => {
+    const card = renderTask(task);
     footer.before(card);
   });
 }

@@ -416,22 +416,22 @@
 // Домашняя работа
 
 
-let tasks = [
-  { id: 1, title: "Купить молоко", status: "активна" },
-  { id: 2, title: "Позвонить врачу", status: "выполнена" },
-  { id: 3, title: "Сходить в магазин", status: "активна" },
-  { id: 4, title: "Покушать", status: "выполнена" },
-  { id: 5, title: "Поиграть", status: "активна" },
-  { id: 6, title: "Доделать уроки", status: "выполнена" },
-];
+// let tasks = [
+//   { id: 1, title: "Купить молоко", status: "активна" },
+//   { id: 2, title: "Позвонить врачу", status: "выполнена" },
+//   { id: 3, title: "Сходить в магазин", status: "активна" },
+//   { id: 4, title: "Покушать", status: "выполнена" },
+//   { id: 5, title: "Поиграть", status: "активна" },
+//   { id: 6, title: "Доделать уроки", status: "выполнена" },
+// ];
 
-// // 2
+//  2
 
 // for (let i = 0; i < tasks.length; i++) {
 //   console.log(tasks[i].id + ": " + tasks[i].title);
 // }
 
-// // 3
+//  3
 
 // for (let task of tasks) {
 //   console.log(task.id + ": " + task.title);
