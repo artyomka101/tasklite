@@ -630,4 +630,4 @@ if (hours >= 0 && hours < 6) {
   timeOfDay = "Вечер";
 }
 
-console.log(`Сегодня ${dayName} сейчас ${timeOfDay}`);
+console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);

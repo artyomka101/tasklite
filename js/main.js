@@ -205,4 +205,20 @@ function formatDate(date) {
   return `${d}.${m}.${y}, ${h}:${min}`;
 }
 
+
+
+function getTimeOfDay() {
+  const hours = new Date().getHours();
+  
+  if (hours >= 6 && hours < 12) {
+    return "Утро";
+  } else if (hours >= 12 && hours < 18) {
+    return "День";
+  } else if (hours >= 18 && hours < 22) {
+    return "Вечер";
+  } else {
+    return "Ночь";
+  }
+}
 renderAll();
+console.log(getTimeOfDay());
