@@ -9,34 +9,46 @@ const tabButtons = document.querySelectorAll(".tabs__item");
 const clearButton = document.querySelector(".footer-controls__button");
 
 let tasks = [];
+let sortOrder = "new";
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  addTask()
+  addTask();
+});
+
+sortSelect.addEventListener("change", () => {
+  // console.log(sortSelect.value);
+  // const val = sortSelect.value
+  // if(val.includes("новые")) sortOrder = "new"
+  // else if (val.includes("старые")) sortOrder = "old"
+  // else if(val.includes("a-z")) sortOrder = "az"
+  // else if (val.includes("z-a")) sortOrder = "za"
+  // sortOrder = sortSelect.value.includes("новые") ? "new" : "old";
+  sortOrder = sortSelect.value;
+  // console.log(sortOrder);
+  renderAll();
 });
 
 function addTask() {
   const text = input.value.trim();
   if (text === "" || text.length < 3) {
-    input.classList.add("input--error")  
-    return
+    input.classList.add("input--error");
+    return;
+  }
+
+  input.classList.remove("input--error");
+
+  const newTask = {
+    id: Date.now(),
+    text: text,
+    done: false,
+    date: formatDate(new Date()),
   };
 
-  input.classList.remove("input--error")
+  tasks.push(newTask);
+  input.value = "";
 
-    const newTask = {
-      id: Date.now(),
-      text: text,
-      done: false,
-      date: formatDate(new Date()),
-    };
-
-
-
-    tasks.push(newTask)
-    input.value = "";
-
-    renderAll();
+  renderAll();
 }
 
 function renderTask(task) {
@@ -190,26 +202,32 @@ function renderAll() {
   // container.innerHTML = "";
   document.querySelectorAll(".task").forEach((t) => t.remove());
 
-  tasks.forEach((task) => {
+  const sorteredTasks = [...tasks].sort((a,b)=>{
+    if (sortOrder === "new") return b.id - a.id;
+    if (sortOrder === "old") return a.id - b.id;
+    if (sortOrder === "az") return a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1;
+    if (sortOrder === "za") return b.text.toLowerCase() > a.text.toLowerCase() ? 1 : -1;
+    });
+
+    sorteredTasks.forEach((task) => {
     const card = renderTask(task);
     footer.before(card);
   });
-}
+
+  }
 
 function formatDate(date) {
-  const d = date.getDate().toString().padStart(2, '0');
-  const m = (date.getMonth() + 1).toString().padStart(2, '0');
+  const d = date.getDate().toString().padStart(2, "0");
+  const m = (date.getMonth() + 1).toString().padStart(2, "0");
   const y = date.getFullYear();
-  const h = date.getHours().toString().padStart(2, '0');
-  const min = date.getMinutes().toString().padStart(2, '0');
+  const h = date.getHours().toString().padStart(2, "0");
+  const min = date.getMinutes().toString().padStart(2, "0");
   return `${d}.${m}.${y}, ${h}:${min}`;
 }
 
-
-
 function getTimeOfDay() {
   const hours = new Date().getHours();
-  
+
   if (hours >= 6 && hours < 12) {
     return "Утро";
   } else if (hours >= 12 && hours < 18) {
