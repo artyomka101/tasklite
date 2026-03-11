@@ -11,6 +11,8 @@ const clearButton = document.querySelector(".footer-controls__button");
 let tasks = [];
 let sortOrder = "new";
 
+let currentFilter = "all";
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   addTask();
@@ -29,6 +31,20 @@ sortSelect.addEventListener("change", () => {
   renderAll();
 });
 
+searchInput.addEventListener("input", renderAll);
+
+tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    tabButtons.forEach((b) => b.classList.remove("tabs__item--active"));
+    btn.classList.add("tabs__item--active");
+
+    if (btn.textContent.includes("Активные")) currentFilter = "active";
+    else if (btn.textContent.includes("Завер")) currentFilter = "done";
+    else currentFilter = "all";
+
+    renderAll();
+  });
+});
 function addTask() {
   const text = input.value.trim();
   if (text === "" || text.length < 3) {
@@ -202,19 +218,35 @@ function renderAll() {
   // container.innerHTML = "";
   document.querySelectorAll(".task").forEach((t) => t.remove());
 
-  const sorteredTasks = [...tasks].sort((a,b)=>{
+  let filtered = tasks.filter((task) => {
+    if (currentFilter === "active") return !task.done;
+    if (currentFilter === "done") return task.done;
+
+
+    return true;
+  });
+
+  const query = searchInput.value.trim().toLowerCase();
+  if (query) {
+    filtered = filtered.filter((task) =>
+      task.text.toLowerCase().includes(query),
+    );
+  }
+
+  const sorteredTasks = [...filtered].sort((a, b) => {
     if (sortOrder === "new") return b.id - a.id;
     if (sortOrder === "old") return a.id - b.id;
-    if (sortOrder === "az") return a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1;
-    if (sortOrder === "za") return b.text.toLowerCase() > a.text.toLowerCase() ? 1 : -1;
-    });
+    if (sortOrder === "az")
+      return a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1;
+    if (sortOrder === "za")
+      return b.text.toLowerCase() > a.text.toLowerCase() ? 1 : -1;
+  });
 
-    sorteredTasks.forEach((task) => {
+  sorteredTasks.forEach((task) => {
     const card = renderTask(task);
     footer.before(card);
   });
-
-  }
+}
 
 function formatDate(date) {
   const d = date.getDate().toString().padStart(2, "0");
