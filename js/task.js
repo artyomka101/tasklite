@@ -578,56 +578,71 @@
 
 // Урок 04.03
 
-const now = new Date();
-console.log(now);
+// const now = new Date();
+// console.log(now);
 
-const day = now.getDate();
-const month = now.getMonth() + 1;
-const year = now.getFullYear();
-console.log(`${day}.${month}.${year}`);
+// const day = now.getDate();
+// const month = now.getMonth() + 1;
+// const year = now.getFullYear();
+// console.log(`${day}.${month}.${year}`);
 
-const hours = now.getHours();
-const minutes = now.getMinutes();
-const seconds = now.getSeconds();
-console.log(`${hours}:${minutes}:${seconds}`);
+// const hours = now.getHours();
+// const minutes = now.getMinutes();
+// const seconds = now.getSeconds();
+// console.log(`${hours}:${minutes}:${seconds}`);
 
-console.log(now.toLocaleString());
+// console.log(now.toLocaleString());
 
-function formatDate(date) {
-  const d = date.getDate().toString().padStart(2, '0');
-  const m = (date.getMonth() + 1).toString().padStart(2, '0');
-  const y = date.getFullYear();
-  const h = date.getHours().toString().padStart(2, '0');
-  const min = date.getMinutes().toString().padStart(2, '0');
-  return `${d}.${m}.${y}, ${h}:${min}`;
-}
+// function formatDate(date) {
+//   const d = date.getDate().toString().padStart(2, '0');
+//   const m = (date.getMonth() + 1).toString().padStart(2, '0');
+//   const y = date.getFullYear();
+//   const h = date.getHours().toString().padStart(2, '0');
+//   const min = date.getMinutes().toString().padStart(2, '0');
+//   return `${d}.${m}.${y}, ${h}:${min}`;
+// }
 
-console.log(formatDate(new Date()));
+// console.log(formatDate(new Date()));
 
 
-const days = [
-  "Воскресенье",
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота"
+// const days = [
+//   "Воскресенье",
+//   "Понедельник",
+//   "Вторник",
+//   "Среда",
+//   "Четверг",
+//   "Пятница",
+//   "Суббота"
+// ];
+
+// const dayName = days[now.getDay()];
+// console.log(dayName);
+
+// let timeOfDay;
+
+// if (hours >= 0 && hours < 6) {
+//   timeOfDay = "Ночь";
+// } else if (hours < 13) {
+//   timeOfDay = "Утро";
+// } else if (hours < 16) {
+//   timeOfDay = "День";
+// } else {
+//   timeOfDay = "Вечер";
+// }
+
+// console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);
+
+const taskList = [
+  { text: "Завершить проект по конкурсу" },
+  { text: "Купить продукты" },
+  { text: "Обновить задачи проекта" },
+  { text: "Позвонить маме" },
+  { text: "Сдать проект до пятницы" },
+  { text: "Прочитать книгу" },
 ];
 
-const dayName = days[now.getDay()];
-console.log(dayName);
+const filtered = taskList.filter((task) =>
+  task.text.toLowerCase().includes("проект")
+);
 
-let timeOfDay;
-
-if (hours >= 0 && hours < 6) {
-  timeOfDay = "Ночь";
-} else if (hours < 13) {
-  timeOfDay = "Утро";
-} else if (hours < 16) {
-  timeOfDay = "День";
-} else {
-  timeOfDay = "Вечер";
-}
-
-console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);
+console.log(filtered);
