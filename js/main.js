@@ -8,9 +8,9 @@ const sortSelect = document.querySelector(".toolbar__sort");
 const tabButtons = document.querySelectorAll(".tabs__item");
 const clearButton = document.querySelector(".footer-controls__button");
 
-let tasks = [];
-let sortOrder = "new";
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+let sortOrder = "new";
 let currentFilter = "all";
 
 form.addEventListener("submit", (event) => {
@@ -45,6 +45,12 @@ tabButtons.forEach((btn) => {
     renderAll();
   });
 });
+clearButton.addEventListener("click", () =>{
+  tasks = tasks.filter(t => !t.done);
+  saveTasks();
+  renderAll();
+});
+
 function addTask() {
   const text = input.value.trim();
   if (text === "" || text.length < 3) {
@@ -63,7 +69,7 @@ function addTask() {
 
   tasks.push(newTask);
   input.value = "";
-
+  saveTasks();
   renderAll();
 }
 
@@ -111,6 +117,7 @@ function renderTask(task) {
     const newText = prompt("Изменить задачу: ", task.text);
     if (newText && newText.trim() !== "") {
       task.text = newText.trim();
+      saveTasks();
       renderAll();
     }
   });
@@ -139,13 +146,14 @@ function renderTask(task) {
     const index = tasks.indexOf(task);
 
     tasks.splice(index, 1);
-
+    saveTasks();
     renderAll();
   });
 
   item.addEventListener("click", (event) => {
     if (event.target.closest(".task__action")) return;
     task.done = !task.done;
+    saveTasks();
     renderAll();
   });
 
@@ -246,7 +254,14 @@ function renderAll() {
     const card = renderTask(task);
     footer.before(card);
   });
+ 
+  updateCounters();
 }
+
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 
 function formatDate(date) {
   const d = date.getDate().toString().padStart(2, "0");
@@ -270,5 +285,24 @@ function getTimeOfDay() {
     return "Ночь";
   }
 }
+
+function updateCounters() {
+  const total = tasks.length;
+  const active = tasks.filter((t) => !t.done).length;
+  const done = tasks.filter((t) => t.done).length;
+
+  clearButton.disabled = tasks.every(t => !t.done);
+  const counters = document.querySelector('.footer-controls__counters');
+  if (counters) {
+    counters.innerHTML = `
+      <span>Всего: ${total}</span>
+      <span>Активных: ${active}</span>
+      <span>Выполненных: ${done}</span>
+    `;
+  }
+}
+
+
+
 renderAll();
 console.log(getTimeOfDay());
