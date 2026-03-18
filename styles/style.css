@@ -254,7 +254,6 @@ body {
   padding-left: 5px;
 }
 
-
 .footer-controls__button {
   padding: 6px 12px;
   font-size: 13px;
@@ -262,7 +261,10 @@ body {
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
   color: #735cc6;
   border: 1px dashed #a28bdc;
 }
@@ -286,15 +288,66 @@ body {
   cursor: not-allowed;
 }
 
-.task--done .task__title{
+.task--done .task__title {
   text-decoration: line-through;
   color: #8a8398;
   opacity: 0.7;
 }
 
-.input--error{
+.input--error {
   border-color: #cb6e6e;
   box-shadow: 0 0 3px rgba(203, 110, 110, 0.4);
 }
 
+.board {
+  display: flex;
+  gap: 30px;
+  justify-self: start;
+  align-self: flex-start;
 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.column {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1 px solid rgba(0,0,0, 0.05);
+  border-radius: 16px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0, 0.04);
+}
+
+.column__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.column__subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  padding-left: 8px;
+}
+
+
+.column__count {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.kanban {
+  background:
+    radial-gradient(at 20% 25%, rgba(173, 216, 230, 0.45), transparent 60%),
+    radial-gradient(at 70% 15%, rgba(135, 206, 250, 0.45), transparent 55%),
+    radial-gradient(at 40% 75%, rgba(126, 207, 234, 0.45), transparent 65%),
+    radial-gradient(at 85% 60%, rgba(255, 239, 186, 0.55), transparent 55%),
+    radial-gradient(at 10% 85%, rgba(255, 218, 181, 0.448), transparent 60%),
+    radial-gradient(at 60% 80%, rgba(186, 230, 253, 0.5), transparent 60%),
+    linear-gradient(135deg, #e0f7fa 0%, #f0f9ff 100%);
+  background-attachment: fixed;
+}
