@@ -302,7 +302,9 @@ body {
 .board {
   display: flex;
   gap: 30px;
+  justify-content: center;
   align-items: flex-start;
+
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 0;
@@ -374,12 +376,12 @@ body {
   border-radius: 10px;
   padding: 16px 18px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-width: 100%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
- 
+  align-items: flex-start;
 
   cursor: grab;
 
