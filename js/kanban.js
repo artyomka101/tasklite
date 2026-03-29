@@ -2,7 +2,7 @@ const columns = document.querySelectorAll(".column");
 
 let boardData = JSON.parse(localStorage.getItem("kanbanData")) || {
   todo: [],
-  "in-prog": [],
+  "in-progress": [],
   done: [],
 };
 
@@ -48,7 +48,7 @@ function updateCount(column) {
     const countEL = column.querySelector(".column__count");
     const status = column.dataset.status;
 
-    countEL.textContent = boardData[status].lenght;
+    countEL.textContent = boardData[status].length;
 }
 
 renderBoard()
