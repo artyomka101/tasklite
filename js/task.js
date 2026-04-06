@@ -410,11 +410,7 @@
 
 // console.log(activeTasks)
 
-
-
-
 // Домашняя работа
-
 
 // let tasks = [
 //   { id: 1, title: "Купить молоко", status: "активна" },
@@ -575,7 +571,6 @@
 // console.log(findTaskByKeyword(tasks, "отчёт"));
 // console.log(findTaskByKeyword(tasks, "тест"));
 
-
 // Урок 04.03
 
 // const now = new Date();
@@ -604,7 +599,6 @@
 
 // console.log(formatDate(new Date()));
 
-
 // const days = [
 //   "Воскресенье",
 //   "Понедельник",
@@ -632,17 +626,72 @@
 
 // console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);
 
-const taskList = [
-  { text: "Завершить проект по конкурсу" },
-  { text: "Купить продукты" },
-  { text: "Обновить задачи проекта" },
-  { text: "Позвонить маме" },
-  { text: "Сдать проект до пятницы" },
-  { text: "Прочитать книгу" },
+// const taskList = [
+//   { text: "Завершить проект по конкурсу" },
+//   { text: "Купить продукты" },
+//   { text: "Обновить задачи проекта" },
+//   { text: "Позвонить маме" },
+//   { text: "Сдать проект до пятницы" },
+//   { text: "Прочитать книгу" },
+// ];
+
+// const filtered = taskList.filter((task) =>
+//   task.text.toLowerCase().includes("проект")
+// );
+
+// console.log(filtered);
+
+const tasks = [
+  {
+    title: "купить молоко",
+    deadline: "2026-04-10",
+    status: "DONE",
+  },
+  {
+    title: "Погулять с собакой",
+    deadline: "2026-11-10",
+    status: "PENDING",
+  },
+  {
+    title: "Сделать уроки",
+    deadline: "2026-09-10",
+    status: "done",
+  },
+  {
+    title: "Сходить в бассейн",
+    deadline: "2026-06-10",
+    status: "pending",
+  },
 ];
 
-const filtered = taskList.filter((task) =>
-  task.text.toLowerCase().includes("проект")
-);
+function getClosestTask(tasks) {
+  let closestTask = null;
+  let closestTime = Infinity;
 
-console.log(filtered);
+  const today = new Date();
+
+  for (let task of tasks) {
+    const status = String(task.status || "")
+      .trim()
+      .toLowerCase();
+
+    if (status !== "done") {
+      const deadline = new Date(task.deadline);
+
+      const diff = deadline - today;
+      if (diff >= 0 && diff < closestTime) {
+        closestTime = diff;
+        closestTask = task;
+      }
+    }
+  }
+
+  if (!closestTask) {
+    return "Нет активных задач";
+  }
+
+  return closestTask.title;
+}
+console.log(getClosestTask(tasks))
+
+
