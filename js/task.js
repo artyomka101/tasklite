@@ -641,57 +641,166 @@
 
 // console.log(filtered);
 
-const tasks = [
-  {
-    title: "купить молоко",
-    deadline: "2026-04-10",
-    status: "DONE",
-  },
-  {
-    title: "Погулять с собакой",
-    deadline: "2026-11-10",
-    status: "PENDING",
-  },
-  {
-    title: "Сделать уроки",
-    deadline: "2026-09-10",
-    status: "done",
-  },
-  {
-    title: "Сходить в бассейн",
-    deadline: "2026-06-10",
-    status: "pending",
-  },
+// ===================================================================
+
+// урок прошлый 6.04
+
+// const tasks = [
+//   {
+//     title: "купить молоко",
+//     deadline: "2026-04-10",
+//     status: "DONE",
+//   },
+//   {
+//     title: "Погулять с собакой",
+//     deadline: "2026-11-10",
+//     status: "PENDING",
+//   },
+//   {
+//     title: "Сделать уроки",
+//     deadline: "2026-09-10",
+//     status: "done",
+//   },
+//   {
+//     title: "Сходить в бассейн",
+//     deadline: "2026-06-10",
+//     status: "pending",
+//   },
+// ];
+
+// function getClosestTask(tasks) {
+//   let closestTask = null;
+//   let closestTime = Infinity;
+
+//   const today = new Date();
+
+//   for (let task of tasks) {
+//     const status = String(task.status || "")
+//       .trim()
+//       .toLowerCase();
+
+//     if (status !== "done") {
+//       const deadline = new Date(task.deadline);
+
+//       const diff = deadline - today;
+//       if (diff >= 0 && diff < closestTime) {
+//         closestTime = diff;
+//         closestTask = task;
+//       }
+//     }
+//   }
+
+//   if (!closestTask) {
+//     return "Нет активных задач";
+//   }
+
+//   return closestTask.title;
+// }
+// console.log(getClosestTask(tasks))
+
+// ===================================================================
+
+const comments = [
+  { user: " Alice ", text: " Hello everyone! " },
+  { user: "BOB", text: "<b>Nice post</b>" },
+  { user: "   ", text: "I am invisible user" }, // пустой user → игнор
+  { user: "Charlie", text: "   " }, // пустой текст → игнор
+  { user: null, text: "Hi!" }, // user невалидный → игнор
+  { user: "dave", text: "<script>alert(1)</script>" }, // XSS попытка
+  { user: "Eve", text: "   Good job!   " },
+  { user: "ALICE", text: "Second comment" }, // тот же пользователь в другом регистре
 ];
 
-function getClosestTask(tasks) {
-  let closestTask = null;
-  let closestTime = Infinity;
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt")
+    .replace(/>/g, "&gt");
+}
 
-  const today = new Date();
-
-  for (let task of tasks) {
-    const status = String(task.status || "")
+function formatComents(comments) {
+  const result = [];
+  for (let comm of comments) {
+    const user = String(comm.user || "")
+      .trim()
+      .toLowerCase();
+    const text = String(comm.text || "")
       .trim()
       .toLowerCase();
 
-    if (status !== "done") {
-      const deadline = new Date(task.deadline);
+    if (!user || !text) continue;
 
-      const diff = deadline - today;
-      if (diff >= 0 && diff < closestTime) {
-        closestTime = diff;
-        closestTask = task;
-      }
+    const safeText = escapeHtml(text);
+
+    result.push(user + ": " + safeText);
+  }
+
+  return result;
+}
+
+console.log(formatComents(comments));
+
+("JS, react, <script>, node");
+
+function renderTags(input) {
+  const seen = {};
+  const list = [];
+
+  const parts = String(input || "").split(",");
+
+  for (let part of parts) {
+    const tag = part.trim().toLowerCase();
+
+    if (!tag) continue;
+
+    if (!seen[tag]) {
+      seen[tag] = true;
+      list.push(tag);
     }
   }
 
-  if (!closestTask) {
-    return "Нет активных задач";
+  let html = "<ul>";
+  for (let tag of list) {
+    const safeTag = escapeHtml(tag);
+    html += "<li>" + safeTag + "</li>";
   }
 
-  return closestTask.title;
+  html += "</ul>";
+
+  return html;
 }
-console.log(getClosestTask(tasks))
+
+console.log(renderTags("JS, react, <script>, node"));
 
 
+const msg = [
+  { text: "Hello world" },
+  { text: "<b>Important</b> message" },
+  { text: "error happened" }
+]
+
+function searchMsg(msg, query) {
+  const result = []; 
+  const normal = String(query || '').trim().toLowerCase()
+
+
+  if (!normal) return result;
+
+
+  for (const item of msg) { 
+
+    const text = String(item.text || '');
+    const normalText = text.toLowerCase();
+    if (normalText.includes(normal)) {
+
+      const safeText = escapeHtml(text);
+      result.push(safeText);
+
+    }
+  }
+
+  
+  return result; 
+}
+
+console.log(searchMsg(msg, "error"))

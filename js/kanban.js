@@ -29,7 +29,7 @@ document.querySelectorAll(".column__btn").forEach((btn) => {
       priority: clearPriority,
       deadline: cleanDeadline,
     });
-  
+
     renderBoard();
   });
 });
@@ -48,18 +48,18 @@ function renderBoard() {
       el.dataset.index = index;
 
       el.innerHTML = `
-            <h3 class="task-kanban__title">${task.title}</h3>
+            <h3 class="task-kanban__title">${escapeHtml(task.title)}</h3>
               ${
                 task.descr
                   ? `<p class="task-kanban__descr">
-                ${task.descr}
+                ${escapeHtml(task.descr)}
               </p>`
                   : ""
               }
 
               <div class="task-kanban__footer">
                 <span class="task-kanban__label ${task.priority}">${priorityLabel(task.priority)}</span>
-                <span class="task-kanban__date">${task.deadline}</span>
+                <span class="task-kanban__date">${escapeHtml(task.deadline)}</span>
               </div>
             `;
 
@@ -96,6 +96,13 @@ function priorityLabel(clearPriority) {
     : "low"
       ? "Низкий приоритет"
       : "Средний приоритет";
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt")
+    .replace(/>/g, "&gt");
 }
 
 renderBoard();
