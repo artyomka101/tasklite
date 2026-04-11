@@ -700,107 +700,128 @@
 
 // ===================================================================
 
-const comments = [
-  { user: " Alice ", text: " Hello everyone! " },
-  { user: "BOB", text: "<b>Nice post</b>" },
-  { user: "   ", text: "I am invisible user" }, // пустой user → игнор
-  { user: "Charlie", text: "   " }, // пустой текст → игнор
-  { user: null, text: "Hi!" }, // user невалидный → игнор
-  { user: "dave", text: "<script>alert(1)</script>" }, // XSS попытка
-  { user: "Eve", text: "   Good job!   " },
-  { user: "ALICE", text: "Second comment" }, // тот же пользователь в другом регистре
-];
+// const comments = [
+//   { user: " Alice ", text: " Hello everyone! " },
+//   { user: "BOB", text: "<b>Nice post</b>" },
+//   { user: "   ", text: "I am invisible user" }, // пустой user → игнор
+//   { user: "Charlie", text: "   " }, // пустой текст → игнор
+//   { user: null, text: "Hi!" }, // user невалидный → игнор
+//   { user: "dave", text: "<script>alert(1)</script>" }, // XSS попытка
+//   { user: "Eve", text: "   Good job!   " },
+//   { user: "ALICE", text: "Second comment" }, // тот же пользователь в другом регистре
+// ];
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt")
-    .replace(/>/g, "&gt");
-}
+// function escapeHtml(str) {
+//   return String(str)
+//     .replace(/&/g, "&amp;")
+//     .replace(/</g, "&lt")
+//     .replace(/>/g, "&gt");
+// }
 
-function formatComents(comments) {
-  const result = [];
-  for (let comm of comments) {
-    const user = String(comm.user || "")
-      .trim()
-      .toLowerCase();
-    const text = String(comm.text || "")
-      .trim()
-      .toLowerCase();
+// function formatComents(comments) {
+//   const result = [];
+//   for (let comm of comments) {
+//     const user = String(comm.user || "")
+//       .trim()
+//       .toLowerCase();
+//     const text = String(comm.text || "")
+//       .trim()
+//       .toLowerCase();
 
-    if (!user || !text) continue;
+//     if (!user || !text) continue;
 
-    const safeText = escapeHtml(text);
+//     const safeText = escapeHtml(text);
 
-    result.push(user + ": " + safeText);
-  }
+//     result.push(user + ": " + safeText);
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-console.log(formatComents(comments));
+// console.log(formatComents(comments));
 
-("JS, react, <script>, node");
+// ("JS, react, <script>, node");
 
-function renderTags(input) {
-  const seen = {};
-  const list = [];
+// function renderTags(input) {
+//   const seen = {};
+//   const list = [];
 
-  const parts = String(input || "").split(",");
+//   const parts = String(input || "").split(",");
 
-  for (let part of parts) {
-    const tag = part.trim().toLowerCase();
+//   for (let part of parts) {
+//     const tag = part.trim().toLowerCase();
 
-    if (!tag) continue;
+//     if (!tag) continue;
 
-    if (!seen[tag]) {
-      seen[tag] = true;
-      list.push(tag);
-    }
-  }
+//     if (!seen[tag]) {
+//       seen[tag] = true;
+//       list.push(tag);
+//     }
+//   }
 
-  let html = "<ul>";
-  for (let tag of list) {
-    const safeTag = escapeHtml(tag);
-    html += "<li>" + safeTag + "</li>";
-  }
+//   let html = "<ul>";
+//   for (let tag of list) {
+//     const safeTag = escapeHtml(tag);
+//     html += "<li>" + safeTag + "</li>";
+//   }
 
-  html += "</ul>";
+//   html += "</ul>";
 
-  return html;
-}
+//   return html;
+// }
 
-console.log(renderTags("JS, react, <script>, node"));
-
-
-const msg = [
-  { text: "Hello world" },
-  { text: "<b>Important</b> message" },
-  { text: "error happened" }
-]
-
-function searchMsg(msg, query) {
-  const result = []; 
-  const normal = String(query || '').trim().toLowerCase()
+// console.log(renderTags("JS, react, <script>, node"));
 
 
-  if (!normal) return result;
+// const msg = [
+//   { text: "Hello world" },
+//   { text: "<b>Important</b> message" },
+//   { text: "error happened" }
+// ]
+
+// function searchMsg(msg, query) {
+//   const result = []; 
+//   const normal = String(query || '').trim().toLowerCase()
 
 
-  for (const item of msg) { 
+//   if (!normal) return result;
 
-    const text = String(item.text || '');
-    const normalText = text.toLowerCase();
-    if (normalText.includes(normal)) {
 
-      const safeText = escapeHtml(text);
-      result.push(safeText);
+//   for (const item of msg) { 
 
-    }
-  }
+//     const text = String(item.text || '');
+//     const normalText = text.toLowerCase();
+//     if (normalText.includes(normal)) {
+
+//       const safeText = escapeHtml(text);
+//       result.push(safeText);
+
+//     }
+//   }
 
   
-  return result; 
+//   return result; 
+// }
+
+// console.log(searchMsg(msg, "error"))
+
+
+
+
+
+function normalizeWords(str) {
+  const clean = String(str || "").trim();
+  if (!clean) return "";
+  const words = clean.split(/\s+/);
+  const result = words.map((word) => {
+    if (word) {
+      const lower = word.toLowerCase();
+      return lower[0].toUpperCase() + lower.slice(1);
+    }
+  });
+  return result.join(" ");
 }
 
-console.log(searchMsg(msg, "error"))
+console.log(normalizeWords("  привет АРТЕМ  "));
+console.log(normalizeWords("КУПИТЬ   молоко"));
+console.log(normalizeWords("сделать ДОМАШНЕЕ задание"));
