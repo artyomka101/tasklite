@@ -6,6 +6,9 @@ let boardData = JSON.parse(localStorage.getItem("kanbanData")) || {
   done: [],
 };
 
+let draggedTask = null;
+let sourceStatus = null;
+
 document.querySelectorAll(".column__btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     const column = btn.closest(".column");
@@ -46,7 +49,7 @@ function renderBoard() {
 
       el.className = "task-kanban";
       el.dataset.index = index;
-
+  el.draggable = true;
       el.innerHTML = `
             <h3 class="task-kanban__title">${escapeHtml(task.title)}</h3>
               ${
@@ -62,7 +65,7 @@ function renderBoard() {
                 <span class="task-kanban__date">${escapeHtml(task.deadline)}</span>
               </div>
             `;
-
+    addDragEvents(el);
       taskList.appendChild(el);
     });
 
@@ -71,6 +74,29 @@ function renderBoard() {
 
   localStorage.setItem("kanbanData", JSON.stringify(boardData));
 }
+
+function addDragEvents(el){
+  el.addEventListener("dragstart", e => {
+    draggedTask = el;
+    sourceStatus = el.closest(".column").dataset.status;
+    el.classList.add("dragging")
+    e.dataTransfer.effectAllowed = "move";
+  } );
+
+  el.addEventListener("dragend", () => {
+    if(draggedTask) draggedTask.classList.remove("dragging");
+    draggedTask = null;
+  });
+}
+
+columns.forEach(column => {
+  const taskList = column.querySelector(".column__tasks");
+  taskList.addEventListener("dragover", (e) => {
+    e.preventDefault()
+    column.classList.add("drag-over")
+  })
+});
+
 
 function updateCount(column) {
   const countEL = column.querySelector(".column__count");
