@@ -49,7 +49,7 @@ function renderBoard() {
 
       el.className = "task-kanban";
       el.dataset.index = index;
-  el.draggable = true;
+      el.draggable = true;
       el.innerHTML = `
             <h3 class="task-kanban__title">${escapeHtml(task.title)}</h3>
               ${
@@ -65,7 +65,7 @@ function renderBoard() {
                 <span class="task-kanban__date">${escapeHtml(task.deadline)}</span>
               </div>
             `;
-    addDragEvents(el);
+      addDragEvents(el);
       taskList.appendChild(el);
     });
 
@@ -75,28 +75,48 @@ function renderBoard() {
   localStorage.setItem("kanbanData", JSON.stringify(boardData));
 }
 
-function addDragEvents(el){
-  el.addEventListener("dragstart", e => {
+function addDragEvents(el) {
+  el.addEventListener("dragstart", (e) => {
     draggedTask = el;
     sourceStatus = el.closest(".column").dataset.status;
-    el.classList.add("dragging")
+    el.classList.add("dragging");
     e.dataTransfer.effectAllowed = "move";
-  } );
+  });
 
   el.addEventListener("dragend", () => {
-    if(draggedTask) draggedTask.classList.remove("dragging");
+    if (draggedTask) draggedTask.classList.remove("dragging");
     draggedTask = null;
   });
 }
 
-columns.forEach(column => {
+columns.forEach((column) => {
   const taskList = column.querySelector(".column__tasks");
   taskList.addEventListener("dragover", (e) => {
-    e.preventDefault()
-    column.classList.add("drag-over")
-  })
-});
+    e.preventDefault();
+    column.classList.add("drag-over");
+  });
 
+  taskList.addEventListener("dragleave", () => {
+    column.classList.remove("drag-over");
+  });
+
+  taskList.addEventListener("drop", (e) => {
+    e.preventDefault();
+    column.classList.remove("drag-over");
+
+    const targetStatus = column.dataset.status;
+    if (!draggedTask) return;
+
+    const index = +draggedTask.dataset.index;
+    const movedTask = boardData[sourceStatus][index];
+
+    boardData[sourceStatus].splice(index, 1);
+
+    boardData[targetStatus].push(movedTask);
+
+    renderBoard();
+  });
+});
 
 function updateCount(column) {
   const countEL = column.querySelector(".column__count");
