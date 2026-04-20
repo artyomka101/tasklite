@@ -139,7 +139,7 @@ function normalizePriority(value) {
 function priorityLabel(clearPriority) {
   return clearPriority === "high"
     ? "Высокий приоритет"
-    : "low"
+    : clearPriority === "low"
       ? "Низкий приоритет"
       : "Средний приоритет";
 }

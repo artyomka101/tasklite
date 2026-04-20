@@ -19,15 +19,7 @@ form.addEventListener("submit", (event) => {
 });
 
 sortSelect.addEventListener("change", () => {
-  // console.log(sortSelect.value);
-  // const val = sortSelect.value
-  // if(val.includes("новые")) sortOrder = "new"
-  // else if (val.includes("старые")) sortOrder = "old"
-  // else if(val.includes("a-z")) sortOrder = "az"
-  // else if (val.includes("z-a")) sortOrder = "za"
-  // sortOrder = sortSelect.value.includes("новые") ? "new" : "old";
   sortOrder = sortSelect.value;
-  // console.log(sortOrder);
   renderAll();
 });
 
@@ -166,64 +158,11 @@ function renderTask(task) {
   }
 
   return item;
-  //   container.append(item);
-  // });
+  
 }
 
-// console.log(renderTask({ text: "Прочитать книгу", date: "сегодня 11:00" }));
-
-// const task1 = renderTask({
-//   text: "Прогулка с собакой",
-//   date: "Сегодня 11:00",
-// });
-
-// const task2 = renderTask({
-//   text: "Прогулка книгу",
-//   date: "Сегодня 13:00",
-// });
-
-// container.append(task1, task2);
-
-// const tasks = [
-//   {
-//     text: "Прогулка книгу",
-//     date: "Сегодня 13:00",
-//     done: true,
-//   },
-//   {
-//     text: "Посмотреть фильм",
-//     date: "Сегодня 14:00",
-//     done: false,
-//   },
-//   {
-//     text: "Купить продукты в магазине",
-//     date: "Сегодня 15:30",
-//     done: false,
-//   },
-//   {
-//     text: "Позвонить врачу",
-//     date: "Сегодня 16:00",
-//     done: true,
-//   },
-//   {
-//     text: "Сделать домашнее задание",
-//     date: "Сегодня 18:00",
-//     done: false,
-//   },
-//   {
-//     text: "Приготовить ужин",
-//     date: "Сегодня 19:30",
-//     done: false,
-//   },
-//   {
-//     text: "Почитать книгу перед сном",
-//     date: "Сегодня 22:00",
-//     done: true,
-//   },
-// ];
-
 function renderAll() {
-  // container.innerHTML = "";
+
   document.querySelectorAll(".task").forEach((t) => t.remove());
 
   let filtered = tasks.filter((task) => {

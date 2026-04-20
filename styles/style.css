@@ -77,6 +77,11 @@ body {
   border-color: #bbbbbb;
 }
 
+.kanban .tab.active {
+  background-color: #B0E0E6;
+  border-color: #bbbbbb;
+}
+
 .todo {
   background:
     radial-gradient(1200px 900px at 20% 25%, #ebe6f5 0%, transparent 60%),
